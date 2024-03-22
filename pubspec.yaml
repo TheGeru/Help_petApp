@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter: ^2.6.0
   geolocator: ^11.0.0
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  logger: ^2.1.0
+  google_sign_in: ^6.2.1
+
 
 dev_dependencies:
   flutter_test:
