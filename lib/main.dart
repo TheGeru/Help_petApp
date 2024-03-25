@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:help_pet_app/pages/register_screen.dart';
+import 'package:help_pet_app/pages/loggin_screen.dart';
+import 'package:help_pet_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -11,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Find Your Best Friend With US',
+      title: 'Help-pet',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -82,7 +88,7 @@ class MyButtonWidget extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const RegisterScreen()),
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
         },
         style: ButtonStyle(

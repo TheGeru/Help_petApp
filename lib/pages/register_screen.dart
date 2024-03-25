@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:help_pet_app/pages/map_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController usernameController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Inicio de sesión'),
+        title: const Text('Registro'),
       ),
       body: Container(
         color: const Color.fromARGB(255, 219, 72, 14),
@@ -17,57 +21,60 @@ class RegisterScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 16),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: const TextField(
-                decoration: InputDecoration(
-                  hintText: 'Ingrese su correo electrónico',
-                  contentPadding: EdgeInsets.all(16.0),
-                  border: InputBorder.none,
-                ),
+            const Text(
+              'Email:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                hintText: 'Ingrese su correo electrónico',
+                filled: true,
+                fillColor: Colors.white,
               ),
             ),
             const SizedBox(height: 16),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
+            const Text(
+              'Contraseña:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration:const InputDecoration(
+                hintText: 'Ingrese su contraseña',
+                filled: true,
+                fillColor: Colors.white,
               ),
-              child: const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Ingrese su contraseña',
-                  contentPadding: EdgeInsets.all(16.0),
-                  border: InputBorder.none,
-                ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Nombre de usuario:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: usernameController,
+              decoration: const InputDecoration(
+                hintText: 'Ingrese su nombre de usuario',
+                filled: true,
+                fillColor: Colors.white,
               ),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MapScreen()),
-                );
+              onPressed: () async {
+                try {
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+                  // Registro exitoso, aquí puedes navegar a la siguiente pantalla
+                } catch (e) {
+                  // Manejar errores de registro
+                  print('Error al registrar: $e');
+                }
               },
-              child: const Text('Iniciar sesión'),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                // Acción para iniciar sesión con Google
-              },
-              child: const Text('Iniciar con Google'),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                // Acción para iniciar sesión con Facebook
-              },
-              child: const Text('Iniciar con Facebook'),
+              child: const Text('Registrar'),
             ),
           ],
         ),
