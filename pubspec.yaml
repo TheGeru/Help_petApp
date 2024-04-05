@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.17.9
   logger: ^2.1.0
   google_sign_in: ^6.2.1
+  rive: ^0.13.1
 
 
 dev_dependencies:
@@ -66,8 +67,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+  - assets/help-pet_logo.riv
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

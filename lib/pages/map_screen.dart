@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
-
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
@@ -18,6 +17,7 @@ class MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
+    _getCurrentLocation();
   }
 
   void _getCurrentLocation() async {
@@ -64,15 +64,32 @@ class MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Google Maps Demo'),
+        title: const Text('Mapa', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green[700],
       ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
-        ),
+      body: Stack(
+        children: [
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 11.0,
+            ),
+            myLocationEnabled: true, // Habilita el botón para ir a la ubicación del usuario
+            myLocationButtonEnabled: true, // Muestra el botón para ir a la ubicación del usuario
+            zoomControlsEnabled: false, // Deshabilita los controles de zoom predeterminados
+          ),
+          Positioned(
+            top: 16,
+            right: 16,
+            child: FloatingActionButton(
+              onPressed: _getCurrentLocation,
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              child: const Icon(Icons.my_location),
+            ),
+          ),
+        ],
       ),
     );
   }

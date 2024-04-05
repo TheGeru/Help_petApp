@@ -12,10 +12,18 @@ class RegisterScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro'),
+        title: const Text('Registro', style: TextStyle(color: Colors.blue)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Container(
-        color: const Color.fromARGB(255, 219, 72, 14),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFDF2F8C), Color(0xFFFC9A3E)],
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -23,41 +31,53 @@ class RegisterScreen extends StatelessWidget {
             const SizedBox(height: 16),
             const Text(
               'Email:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Ingrese su correo electrónico',
                 filled: true,
                 fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
             const SizedBox(height: 16),
             const Text(
               'Contraseña:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
             TextField(
               controller: passwordController,
               obscureText: true,
-              decoration:const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Ingrese su contraseña',
                 filled: true,
                 fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
             const SizedBox(height: 16),
             const Text(
               'Nombre de usuario:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
             TextField(
               controller: usernameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Ingrese su nombre de usuario',
                 filled: true,
                 fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -74,7 +94,14 @@ class RegisterScreen extends StatelessWidget {
                   print('Error al registrar: $e');
                 }
               },
-              child: const Text('Registrar'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text('Registrar', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
