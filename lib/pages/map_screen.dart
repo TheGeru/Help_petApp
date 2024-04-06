@@ -10,7 +10,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class MapScreenState extends State<MapScreen> {
-  late GoogleMapController? mapController; // Haz que mapController sea nullable
+  late GoogleMapController? mapController; //* Haz que mapController sea nullable
 
   final LatLng _center = const LatLng(37.42796133580664, -122.085749655962);
 
@@ -21,15 +21,15 @@ class MapScreenState extends State<MapScreen> {
   }
 
   void _getCurrentLocation() async {
-    if (mapController == null) return; // Verificar si mapController es nulo
+    if (mapController == null) return; //* Verificar si mapController es nulo
 
-    // Verificar si los servicios de ubicación están activados
+    //* Verificar si los servicios de ubicación están activados
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Los servicios de ubicación no están activados, mostrar un mensaje al usuario
+      //* Los servicios de ubicación no están activados, mostrar un mensaje al usuario
       return;
     }
 
@@ -37,17 +37,17 @@ class MapScreenState extends State<MapScreen> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // El usuario negó el acceso a la ubicación, mostrar un mensaje al usuario
+        //* El usuario negó el acceso a la ubicación, mostrar un mensaje al usuario
         return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // El usuario negó permanentemente el acceso a la ubicación, mostrar un mensaje al usuario
+      //* El usuario negó permanentemente el acceso a la ubicación, mostrar un mensaje al usuario
       return;
     }
 
-    // Obtener la ubicación actual del dispositivo
+    //* Obtener la ubicación actual del dispositivo
     Position position = await Geolocator.getCurrentPosition();
     LatLng currentLocation = LatLng(position.latitude, position.longitude);
     mapController!.animateCamera(CameraUpdate.newLatLng(currentLocation));
@@ -56,7 +56,7 @@ class MapScreenState extends State<MapScreen> {
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
       mapController = controller;
-      _getCurrentLocation(); // Llamar a _getCurrentLocation después de que mapController se haya inicializado
+      _getCurrentLocation(); //* Llamar a _getCurrentLocation después de que mapController se haya inicializado
     });
   }
 
@@ -75,9 +75,9 @@ class MapScreenState extends State<MapScreen> {
               target: _center,
               zoom: 11.0,
             ),
-            myLocationEnabled: true, // Habilita el botón para ir a la ubicación del usuario
-            myLocationButtonEnabled: true, // Muestra el botón para ir a la ubicación del usuario
-            zoomControlsEnabled: false, // Deshabilita los controles de zoom predeterminados
+            myLocationEnabled: true, //* Habilita el botón para ir a la ubicación del usuario
+            myLocationButtonEnabled: true, //* Muestra el botón para ir a la ubicación del usuario
+            zoomControlsEnabled: false, //* Deshabilita los controles de zoom predeterminados
           ),
           Positioned(
             top: 16,

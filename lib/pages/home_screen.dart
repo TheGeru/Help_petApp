@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      debugShowCheckedModeBanner: false, // Esto quita la etiqueta de "debug"
+      debugShowCheckedModeBanner: false, //* Esto quita la etiqueta de "debug"
       home: Scaffold(
         body: Stack(
           children: [
@@ -32,14 +32,14 @@ class HomeScreen extends StatelessWidget {
               child: AppBar(
                 title: const Text('Help-Pet'),
                 backgroundColor:
-                    Colors.transparent, // Hace que el AppBar sea transparente
-                elevation: 0, // Quita la sombra del AppBar
+                    Colors.transparent, //* Hace que el AppBar sea transparente
+                elevation: 0, //* Quita la sombra del AppBar
               ),
             ),
             Positioned.fill(
               top: AppBar()
                   .preferredSize
-                  .height, // Asegura que el contenido comience debajo del AppBar
+                  .height, //* Asegura que el contenido comience debajo del AppBar
               child: const MyHomePage(title: 'Help-pet'),
             ),
           ],
@@ -91,7 +91,7 @@ class MyButtonWidget extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           textStyle: MaterialStateProperty.all<TextStyle>(
-            const TextStyle(fontSize: 20), // Tamaño del texto del botón
+            const TextStyle(fontSize: 20),
           ),
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
               const EdgeInsets.symmetric(vertical: 20, horizontal: 38)),
@@ -129,13 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
             'Encuentra a tu mejor amigo en cualquier parte',
             style: TextStyle(
                 fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Bienvenido a Help-pet, una herramienta la cual te lleva a estar siempre cerca de tu mascota',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16),
